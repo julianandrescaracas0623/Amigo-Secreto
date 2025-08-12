@@ -6,6 +6,19 @@
     --color-button-hover: #e55720;
     --color-text: #444444;
     --color-white: #FFFFFF;
+    --color-error: #ff3b30;
+    --transition-speed: 0.3s;
+}
+
+.dark-mode {
+    --color-primary: #2E3D63;
+    --color-secondary: #1A1A2E;
+    --color-tertiary: #777777;
+    --color-button: #ff7b51;
+    --color-button-hover: #ff9a7b;
+    --color-text: #E0E0E0;
+    --color-white: #D0D0D0;
+    --color-error: #ff6b6b;
 }
 
 /* Estilos generales */
@@ -16,18 +29,20 @@
 }
 
 body {
-    height: 100vh;
+    min-height: 100vh;
     background-color: var(--color-primary);
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .main-content {
     display: flex;
     flex-direction: column;
-    height: 100%;
+    flex: 1;
     width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 /* Banner */
@@ -174,4 +189,277 @@ ul {
 
 .button-clear:hover {
     background-color: #ff1a1a; /* Rojo más oscuro */
+}
+
+.visually-hidden {
+    position: absolute !important;
+    height: 1px; width: 1px;
+    overflow: hidden;
+    clip: rect(1px, 1px, 1px, 1px);
+    white-space: nowrap;
+}
+
+/* Footer */
+.footer {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    padding: 20px 0;
+    text-align: center;
+    width: 100%;
+    margin-top: auto;
+}
+
+.footer-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 20px;
+    font-family: "Inter", sans-serif;
+}
+
+.footer p {
+    margin: 8px 0;
+    font-size: 16px;
+}
+
+.footer p:first-child {
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.linkedin-link {
+    color: var(--color-white);
+    text-decoration: none;
+    font-weight: 600;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+    padding-bottom: 2px;
+    transition: all 0.3s ease;
+}
+
+.linkedin-link:hover {
+    color: #E0E0E0;
+    border-bottom: 1px solid #E0E0E0;
+}
+
+/* Estilos para el toggle de modo oscuro */
+.theme-switch {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 100;
+}
+
+.theme-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.theme-switch label {
+    cursor: pointer;
+    width: 60px;
+    height: 30px;
+    background-color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px;
+    border-radius: 30px;
+    position: relative;
+    transition: var(--transition-speed);
+}
+
+.theme-switch label::after {
+    content: "";
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    background-color: white;
+    border-radius: 50%;
+    top: 4px;
+    left: 4px;
+    transition: var(--transition-speed);
+}
+
+.theme-switch input:checked + label::after {
+    transform: translateX(30px);
+}
+
+.theme-switch .fa-sun {
+    color: #f39c12;
+}
+
+.theme-switch .fa-moon {
+    color: #f1c40f;
+}
+
+/* Estilos para lista de amigos */
+.friend-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 15px;
+    margin: 8px 0;
+    background-color: var(--color-white);
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    opacity: 0;
+    transform: translateY(20px);
+    width: 100%;
+    max-width: 400px;
+}
+
+.friend-item:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+}
+
+.delete-btn {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: none;
+    background-color: var(--color-error);
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin-left: 10px;
+    opacity: 0.7;
+    transition: opacity 0.3s;
+}
+
+.delete-btn:hover {
+    opacity: 1;
+}
+
+/* Animación para sorteo */
+.sorteo-animation {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+}
+
+.loader {
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top: 4px solid var(--color-button);
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+    margin-bottom: 15px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Estilo para resultados */
+.resultado-item {
+    background-color: var(--color-primary);
+    color: white;
+    padding: 15px 20px;
+    margin: 10px 0;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    font-weight: 500;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s ease;
+}
+
+/* Mensaje de error */
+.error-message {
+    color: var(--color-error);
+    min-height: 20px;
+    margin-top: 10px;
+    text-align: center;
+    font-weight: 500;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+/* Mensaje de confirmación */
+.confirmation-message {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #28a745;
+    color: white;
+    padding: 15px 25px;
+    border-radius: 30px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1000;
+}
+
+/* Botones de herramientas */
+.tools-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    gap: 15px;
+}
+
+.tool-button {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: none;
+    background-color: var(--color-tertiary);
+    color: var(--color-text);
+    font-size: 18px;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.tool-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+    background-color: var(--color-button);
+    color: white;
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+    .main-title {
+        font-size: 36px;
+    }
+    
+    .section-title {
+        font-size: 28px;
+    }
+    
+    .input-wrapper {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .input-name {
+        border-radius: 25px;
+        margin-bottom: 10px;
+    }
+    
+    .button-add {
+        border-radius: 25px;
+        width: 100%;
+    }
+    
+    .button-container {
+        flex-direction: column;
+        width: 100%;
+        max-width: 300px;
+    }
 }
